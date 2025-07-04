@@ -86,4 +86,4 @@ with col2:
     for cat in categories:
         if st.button(cat, use_container_width=True, key=f"cat_{cat}"):
             st.session_state.selected_category = cat
-            st.switch_page("pages/Book_Libarary.py")
+            st.switch_page("pages/Book_Library.py")
