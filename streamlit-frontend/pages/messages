@@ -1,0 +1,191 @@
+import streamlit as st
+from datetime import datetime
+import os
+
+# -----------------------------
+# Simulated user and test data
+# -----------------------------
+CURRENT_USER_ID = 1
+
+contacts = [
+    {"user_id": 2, "name": "Alice"},
+    {"user_id": 3, "name": "Bob"},
+]
+
+test_messages = {
+    2: [
+        {"sender_id": 2, "message_text": "Hey there!", "timestamp": "10:00 AM"},
+        {"sender_id": 1, "message_text": "Hi Alice, how are you?", "timestamp": "10:01 AM"},
+        {"sender_id": 2, "message_text": "Doing well, thanks!", "timestamp": "10:03 AM"},
+    ],
+    3: [
+        {"sender_id": 3, "message_text": "Did you see the news today?", "timestamp": "9:00 AM"},
+        {"sender_id": 1, "message_text": "Yeah, pretty interesting stuff.", "timestamp": "9:05 AM"},
+    ],
+}
+
+# -----------------------------
+# Session state init
+# -----------------------------
+if "chat_with" not in st.session_state:
+    st.session_state.chat_with = None
+if "font_size" not in st.session_state:
+    st.session_state.font_size = 16
+
+font_size = st.session_state.font_size
+
+# -----------------------------
+# Sidebar - Logo and Menu
+# -----------------------------
+with st.sidebar:
+    if os.path.exists("images/logo.png"):
+        st.image("images/logo.png", width=100)
+    st.markdown(f"""
+        <h2 style="text-align: center; color: #1e3a8a; font-family: 'Brush Script MT', 'Pacifico', cursive; font-size: {font_size + 20}px; margin-bottom: 0;">
+            Saathi
+        </h2>
+        <p style="text-align: center; color: #2563eb; font-size: {font_size - 2}px; margin-top: 2px;">
+            A companion app for senior citizens
+        </p>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<hr>", unsafe_allow_html=True)
+
+    menu_items = [
+        ("💬 AI Chat", "#"),
+        ("📨 Messages", "#"),
+        ("🎬 Entertainment", "#"),
+        ("📖 Mythology", "#"),
+        ("⏰ Reminders", "#"),
+    ]
+
+    for label, link in menu_items:
+        st.markdown(f"""
+            <a href="{link}" style="
+                text-decoration: none;
+                display: block;
+                text-align: center;
+                padding: 10px 0;
+                margin: 6px 0;
+                background-color: #e0f2fe;
+                color: #1e40af;
+                border-radius: 10px;
+                font-weight: bold;
+                border: 1px solid #1e3a8a;
+                font-size: {font_size}px;
+            ">{label}</a>
+        """, unsafe_allow_html=True)
+
+    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown(f"<span style='font-size: {font_size}px;'>🆘 <strong>Help</strong></span>", unsafe_allow_html=True)
+    st.slider("Font size", min_value=12, max_value=32, value=font_size, key="font_size")
+
+# -----------------------------
+# Main Layout
+# -----------------------------
+st.markdown(f"<h1 style='color: #1e3a8a; font-size: {font_size + 10}px;'>📨 Messages</h1>", unsafe_allow_html=True)
+
+col1, col2 = st.columns([1, 3])
+
+# -----------------------------
+# Chat List - Left Panel
+# -----------------------------
+with col1:
+    st.markdown(f"<h3 style='font-size: {font_size + 2}px;'>Chats</h3>", unsafe_allow_html=True)
+    for user in contacts:
+        st.button(user["name"], use_container_width=True)
+
+# -----------------------------
+# Chat Window - Right Panel
+# -----------------------------
+with col2:
+    if st.session_state.chat_with:
+        contact = st.session_state.chat_with
+
+        # Back button and title
+        colA, colB = st.columns([1.05, 5])
+        with colA:
+            if st.button("⬅ Back", key="back_btn"):
+                st.session_state.chat_with = None
+                st.experimental_rerun()
+        with colB:
+            st.markdown(
+                f"<span style='font-size: {font_size + 4}px; color: #1e3a8a; font-weight: bold;'>Chat with {contact['name']}</span>",
+                unsafe_allow_html=True
+            )
+
+        st.markdown(f"""
+            <div style='max-height: 400px; overflow-y: auto; padding: 10px; background-color: #f8fafc; border-radius: 8px; margin-bottom: 70px; font-size: {font_size}px;'>
+        """, unsafe_allow_html=True)
+
+        messages = test_messages.get(contact["user_id"], [])
+        for msg in messages:
+            alignment = "right" if msg["sender_id"] == CURRENT_USER_ID else "left"
+            bubble_color = "#dcf8c6" if msg["sender_id"] == CURRENT_USER_ID else "#ffffff"
+            border = "none" if msg["sender_id"] == CURRENT_USER_ID else "1px solid #ccc"
+            st.markdown(f"""
+                <div style='text-align: {alignment}; margin-bottom: 10px;'>
+                    <span style='background-color: {bubble_color}; padding: 10px 15px; border-radius: 12px;
+                        display: inline-block; max-width: 70%; border: {border}; font-size: {font_size}px;'>
+                        {msg["message_text"]}
+                    </span><br>
+                    <small style='font-size: {font_size - 4}px;'>{msg["timestamp"]}</small>
+                </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        with st.form("send_form", clear_on_submit=True):
+            st.markdown(f"""
+                <style>
+                    .reply-box {{
+                        position: fixed;
+                        bottom: 15px;
+                        left: 380px;
+                        right: 30px;
+                        background-color: #f1f5f9;
+                        padding: 10px;
+                        box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        z-index: 999;
+                        font-size: {font_size}px;
+                    }}
+                    .reply-box input[type='text'] {{
+                        flex: 1;
+                        padding: 10px;
+                        font-size: {font_size}px;
+                        border: 1px solid #ccc;
+                        border-radius: 8px;
+                        margin-right: 10px;
+                    }}
+                    .reply-box button {{
+                        background-color: #2563eb;
+                        color: white;
+                        padding: 10px 16px;
+                        border: none;
+                        border-radius: 8px;
+                        font-weight: bold;
+                        cursor: pointer;
+                        font-size: {font_size}px;
+                    }}
+                </style>
+                <div class="reply-box">
+                    <input type="text" name="reply_hidden_input" placeholder="Type your message..."/>
+                    <button type="submit">Send</button>
+                </div>
+            """, unsafe_allow_html=True)
+
+            new_msg = st.text_input("", key="reply_hidden_input_field")
+            send = st.form_submit_button("Send")
+            if send and new_msg:
+                test_messages[contact["user_id"]].append({
+                    "sender_id": CURRENT_USER_ID,
+                    "message_text": new_msg,
+                    "timestamp": datetime.now().strftime("%I:%M %p")
+                })
+                st.experimental_rerun()
+    else:
+        st.info("Select a conversation from the left panel to start chatting.")
+
