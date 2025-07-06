@@ -30,8 +30,8 @@ st.divider()
 cards = [
     ("Health & Reminders", "health", "images/health.png"),
     ("Mythology", "Mythology_Homepage", "images/mythology.png"),
-    ("AI Assistant", "ai_assistant", "images/ai_assistant.png"),
-    ("Entertainment", "entertainment", "images/entertainment.png"),
+    ("AI Assistant", "Ai_assistant", "images/ai_assistant.png"),
+    ("Entertainment", "Entertainment", "images/entertainment.png"),
     ("Messages", "Messages_app", "images/messages.png"),
 ]
 
