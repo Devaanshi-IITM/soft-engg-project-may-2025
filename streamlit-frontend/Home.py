@@ -28,11 +28,11 @@ st.divider()
 
 # Cards
 cards = [
-    ("Health & Reminders", "Health", "images/health.png"),
-    ("Mythology", "Mythology", "images/mythology.png"),
-    ("AI Assistant", "Ai_assistant", "images/ai_assistant.png"),
-    ("Entertainment", "Entertainment", "images/entertainment.png"),
-    ("Messages", "Messages", "images/messages.png"),
+    ("Health & Reminders", "health", "images/health.png"),
+    ("Mythology", "Mythology_Homepage", "images/mythology.png"),
+    ("AI Assistant", "ai_assistant", "images/ai_assistant.png"),
+    ("Entertainment", "entertainment", "images/entertainment.png"),
+    ("Messages", "Messages_app", "images/messages.png"),
 ]
 
 st.markdown("### ")
