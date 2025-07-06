@@ -1,31 +1,30 @@
 import streamlit as st
 
-from utils.style import apply_base_style, render_sidebar
-apply_base_style()
+
+# App title
+st.set_page_config(page_title="Family Dashboard", layout="wide")
 
 # Sidebar
 with st.sidebar:
-
-    font_size = render_sidebar()
-
-st.title("Health")
-
-# Menu
-menu = st.radio(
-    "Navigation",
-    ("Appointments", "Reminders", "Records/Prescriptions"),
-    label_visibility="collapsed" 
+    st.markdown("## 👨‍👩‍👧‍👦 Family Dashboard")
+    
+    menu = st.radio(
+        "Navigation",
+        ("Appointments", "Reminders", "Records/Prescriptions"),
+        label_visibility="collapsed"  # hides the 'Navigation' label
     )
 
-# Search bar
-
-st.markdown("&nbsp;", unsafe_allow_html=True) 
-search = st.text_input("Search", placeholder="Search...")
-
-
-if menu == "Appointments":
-    st.markdown(f"<h3 style='font-size: {font_size}px;'>Upcoming Appointments</h3>", unsafe_allow_html=True)
+# Top bar
+col1, col2 = st.columns([3, 1])
+with col1:
+    st.markdown("&nbsp;", unsafe_allow_html=True) 
+    search = st.text_input("Search", placeholder="Search...")
+with col2:
+    st.write(f"Welcome **username!**")
     
+# Pages
+if menu == "Appointments":
+    st.subheader("Upcoming Appointments")
     st.table({
         "Date & Time": ["", "", ""],
         "Consulting Doctor": ["", "", ""],
@@ -47,8 +46,7 @@ if menu == "Appointments":
                 st.success("Reminder added successfully!")
 
 elif menu == "Reminders":
-    st.markdown(f"<h3 style='font-size: {font_size}px;'>Set Reminders</h3>", unsafe_allow_html=True)
-    
+    st.subheader("Existing Reminders")
     st.table({
         "Reminder Text": ["", "", ""],
         "Frequency": ["", "", ""],
@@ -65,8 +63,7 @@ elif menu == "Reminders":
                 st.success("Reminder added successfully!")
 
 elif menu == "Records/Prescriptions":
-    st.markdown(f"<h3 style='font-size: {font_size}px;'>Medical Records & Prescriptions</h3>", unsafe_allow_html=True)
-    
+    st.subheader("Medical Records / Prescriptions")
     st.table({
         "File": ["", "", ""],
         "Date": ["", "", ""],
@@ -82,5 +79,6 @@ elif menu == "Records/Prescriptions":
             other_info = st.text_input("Other Info")
             submitted = st.form_submit_button("Save")
             if submitted:
-
                 st.success("Record added successfully!")
+
+
