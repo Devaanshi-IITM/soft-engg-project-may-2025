@@ -6,17 +6,19 @@ def apply_base_style():
         <style>
 
         html, body, [data-testid="stAppViewContainer"], [data-testid="stAppViewBlockContainer"] {
-            background-color: #fbeee6;
+            background: linear-gradient(to bottom, #fffaf0, #ffe0b2, #ffd2a0, #ee8c8c);
+
+            
+
             min-height: 100vh;
         }
 
         [data-testid="stSidebar"] {
-            background-color: #1a5276;
+            background-color: rgba(0, 0, 0, 0.1);
             padding: 20px;
         }
 
-        [data-testid="stSidebar"] label {
-            color: #fbeee6;   
+        [data-testid="stSidebar"] label {   
             font-weight: bold;
         }
 
@@ -72,4 +74,15 @@ def apply_base_style():
 
 def show_header(page_title):
     st.markdown(f"<h3 style='margin-bottom: 0;'>{page_title}</h3>", unsafe_allow_html=True)
+
+def render_sidebar():
+
+    font_size = st.slider("Font size", 12, 28, 18)
+
+    # Logout button
+    if st.button("Logout"):
+        st.session_state.logged_in = False
+        #st.experimental_rerun()
+
+    return font_size
 
