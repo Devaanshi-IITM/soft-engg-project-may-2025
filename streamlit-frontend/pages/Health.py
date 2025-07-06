@@ -82,4 +82,5 @@ elif menu == "Records/Prescriptions":
             other_info = st.text_input("Other Info")
             submitted = st.form_submit_button("Save")
             if submitted:
+
                 st.success("Record added successfully!")
