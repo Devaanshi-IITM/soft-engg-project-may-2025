@@ -1,3 +1,0 @@
-import streamlit as st
-st.title("Entertainment")
-st.write("This is Entertainment section.")

@@ -1,27 +1,21 @@
-from utils.style import apply_base_style, show_header
+from utils.style import apply_base_style, show_header, render_sidebar
 import streamlit as st
 import base64
 
 # Apply shared styling
 apply_base_style()
 
-# Navbar
+# Sidebar
 with st.sidebar:
-    st.markdown("<h1 style='color: #fbeee6;'>Welcome!</h1>", unsafe_allow_html=True)
 
-    # Font size slider
-    font_size = st.slider("Font size", 12, 28, 18)
+    font_size = render_sidebar()
 
-    # Logout button
-    if st.button("Logout"):
-        st.session_state.logged_in = False
-        st.experimental_rerun()
 
 
 # ---- MAIN CONTENT ----
 st.markdown(f"""
-    <h1 style='margin-bottom: 0; color: #1a5276;'><b>Saathi</b>
-        <span style='font-size: {font_size * 0.8}px; font-family: cursive; color: #1a5276; margin-left: 8px;'>
+    <h1 style='margin-bottom: 0; color: #154360;'><b>Saathi</b>
+        <span style='font-size: {font_size * 0.8}px; font-family: cursive; color: #154360; margin-left: 8px;'>
             Your companion
         </span>
     </h1>""", unsafe_allow_html=True)
@@ -34,11 +28,11 @@ st.divider()
 
 # Cards
 cards = [
-    ("Health & Reminders", "pages/health.py", "images/health.png"),
-    ("Mythology", "pages/Mythology_Homepage.py", "images/mythology.png"),
-    ("AI Assistant", "pages/ai_assistant.py", "images/ai_assistant.png"),
-    ("Entertainment", "pages/entertainment.py", "images/entertainment.png"),
-    ("Messages", "pages/Messages_app.py", "images/messages.png"),
+    ("Health & Reminders", "health", "images/health.png"),
+    ("Mythology", "Mythology_Homepage", "images/mythology.png"),
+    ("AI Assistant", "Ai_assistant", "images/ai_assistant.png"),
+    ("Entertainment", "Entertainment", "images/entertainment.png"),
+    ("Messages", "Messages_app", "images/messages.png"),
 ]
 
 st.markdown("### ")
@@ -60,7 +54,7 @@ for i in range(0, len(cards), 3):
             with cols[j]:
                 st.markdown(
                     f"""
-                    <a href='/{link}' target='_self'>
+                    <a href='{link}' target='_self'>
                         <div class='note-card'>
                             <img src='{img_base64}' alt='{title} icon'/>
                             <div class='card-title' style='font-size:{font_size}px'>{title}</div>
