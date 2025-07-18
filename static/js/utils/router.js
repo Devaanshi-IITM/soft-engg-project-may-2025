@@ -10,6 +10,13 @@ const BhajanPage = Vue.component('BhajanPage');
 const VideoCallPage = Vue.component('VideoCallPage');
 const AssistantPage = Vue.component('AIAssistantPage');
 const GuardianDashboard = Vue.component('GuardianDashboard')
+const GuardianReminderPage = Vue.component('GuardianReminderPage');
+const GuardianAddMusicPage = Vue.component('GuardianAddMusicPage');
+const GuardianBookTestPage = Vue.component('GuardianBookTestPage');
+
+
+   
+   
 
 const router = new VueRouter({
   mode: 'hash',
@@ -25,7 +32,10 @@ const router = new VueRouter({
     { path: '/bhajans', component: BhajanPage },
     { path: '/video-call', component: VideoCallPage },
     { path: '/assistant', component: AssistantPage },
-    { path: '/guardiandashboard', component: GuardianDashboard}
+    { path: '/guardiandashboard', component: GuardianDashboard},
+    { path: '/guardian/reminder', component: GuardianReminderPage },
+    { path: '/guardian/music', component: GuardianAddMusicPage },
+    { path: '/guardian/checkup', component: GuardianBookTestPage },
   ]
 });
 

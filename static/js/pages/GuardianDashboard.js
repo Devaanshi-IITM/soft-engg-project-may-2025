@@ -14,10 +14,10 @@ Vue.component('GuardianDashboard', {
             <h3>Add Medicine Reminder</h3>
           </router-link>
   
-          <router-link to="/guardian/videocall" class="dashboard-card">
-            <i class="fas fa-video"></i>
-            <h3>Video Call</h3>
-
+          <router-link to="/guardian/music" class="dashboard-card">
+            <i class="fas fa-music"></i>
+            <h3>Add Music</h3>
+            <p>Upload bhajans or songs for your parent.</p>
           </router-link>
   
           <router-link to="/guardian/checkup" class="dashboard-card">

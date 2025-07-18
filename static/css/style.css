@@ -890,3 +890,138 @@ News Page
   body.dark-mode .guardian-dashboard .dashboard-card p {
     color: #ccc;
   }
+
+/* =======================================
+   Guardian Reminder Page Styles
+======================================= */
+.guardian-reminder-page h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .reminder-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  }
+  
+  .reminder-form .field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .reminder-form .input,
+  .reminder-form .textarea {
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  
+  .reminder-form .button {
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+  }
+  
+  /* Dark Mode */
+  body.dark-mode .reminder-form {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  body.dark-mode .reminder-form input,
+  body.dark-mode .reminder-form textarea {
+    background: #333;
+    color: white;
+    border: 1px solid #666;
+  }
+
+  /* =======================================
+   🎵 Guardian Add Music Page Styles
+======================================= */
+.guardian-add-music-page h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.music-upload-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.music-upload-form .field {
+  margin-bottom: 1.5rem;
+}
+
+.music-upload-form .input {
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.music-upload-form .button {
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+}
+
+/* Dark mode support */
+body.dark-mode .music-upload-form {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .music-upload-form input {
+  background: #333;
+  color: white;
+  border: 1px solid #666;
+}
+
+/* =======================================
+   Book Health Test Page Styles
+======================================= */
+.guardian-book-test-page h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.test-booking-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.test-booking-form .field {
+  margin-bottom: 1.5rem;
+}
+
+.test-booking-form .input,
+.test-booking-form .textarea,
+.test-booking-form .select select {
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.test-booking-form .button {
+  font-size: 1rem;
+  padding: 0.75rem 2rem;
+}
+
+/* Dark Mode */
+body.dark-mode .test-booking-form {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .test-booking-form input,
+body.dark-mode .test-booking-form select,
+body.dark-mode .test-booking-form textarea {
+  background: #333;
+  color: white;
+  border: 1px solid #666;
+}
