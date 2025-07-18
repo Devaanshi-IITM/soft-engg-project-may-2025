@@ -1,0 +1,45 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sathi – Your Digital Companion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Vue 2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <!-- Vue App Mount Point -->
+  <div id="app">
+    <router-view></router-view>
+  </div>
+
+  <!-- Vue Pages -->
+  <script src="{{ url_for('static', filename='js/pages/Home.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/LoginPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/RegisterPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/SeniorDashboard.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/ReminderPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/CheckupPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/NewsPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/EntertainmentPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/BhajansPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/VideoCallPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/AIAssistantPage.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/pages/GuardianDashboard.js') }}"></script>
+  
+  <!-- Vue Router -->
+  <script src="{{ url_for('static', filename='js/utils/router.js') }}"></script>
+
+  <!-- Vue App Entry -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
