@@ -3,9 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Sathi – Your Digital Companion</title>
+  <title>Saathi – Your Digital Companion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+  <link rel="icon" href="{{ url_for('static', filename='assets/mainlogo.png') }}" type="image/png">
+  
   <!-- Vue 2 CDN -->
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-router@3"></script>
@@ -35,11 +36,6 @@
   <script src="{{ url_for('static', filename='js/pages/VideoCallPage.js') }}"></script>
   <script src="{{ url_for('static', filename='js/pages/AIAssistantPage.js') }}"></script>
   <script src="{{ url_for('static', filename='js/pages/GuardianDashboard.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/pages/GuardianReminderPage.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/pages/GuardianAddMusicPage.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/pages/GuardianBookTestPage.js') }}"></script>
-
-  
   
   <!-- Vue Router -->
   <script src="{{ url_for('static', filename='js/utils/router.js') }}"></script>
