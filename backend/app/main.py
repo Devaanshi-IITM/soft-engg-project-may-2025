@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.core.db import postgres # Import database initialization functions
+from app.core.db import postgres, mongo, redis # Import database initialization functions
 from app.api.router import api_router  # Import the API router from the api module
 
 
