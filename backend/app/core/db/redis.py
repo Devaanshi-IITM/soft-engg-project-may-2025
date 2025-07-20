@@ -8,4 +8,4 @@ async def init_redis():
     redis_client = redis.from_url(settings.REDIS_URL, decode_responses=True)
 
 async def close_redis():
-    await redis_client.close()
+    redis_client.close()
