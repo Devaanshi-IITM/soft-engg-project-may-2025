@@ -51,10 +51,6 @@ class Preference(Base):
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     content_id = Column(UUID(as_uuid=True), ForeignKey("contents.id", ondelete="CASCADE"), nullable=False)
 
-    user = relationship("User", back_populates="preferences")
-    content = relationship("Content", back_populates="preferences")
-
-
 class Message(Base):
     __tablename__ = "messages"
 

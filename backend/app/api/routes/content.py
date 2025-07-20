@@ -1,31 +1,34 @@
 # app/routers/user.py
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.models.postgres import Reminder
-from app.models.request import ReminderCreate, ReminderRead
-from app.models.request import UserCreate, UserRead
+from app.models.db.postgres import Content
+from app.models.requests.content import ContentCreate, ContentRead
 from app.api.deps import get_db
 
 router = APIRouter(prefix="/content", tags=["content"])
 
-@router.post("/create", response_model=ReminderRead)
-def create_content(user: UserCreate, db: Session = Depends(get_db)):
-    new_user = User(name=user.name, email=user.email)
-    db.add(new_user)
+@router.post("/create")
+def create_content(content: ContentCreate, db: Session = Depends(get_db)):
+    new_content = Content(title=content.title,
+                          type=content.type,
+                          file_url=content.file_url)
+    db.add(new_content)
     db.commit()
-    return new_user
+    return {"success": True, "message": "Content created successfully"}
 
-@router.get("/get/{content_id}", response_model=ReminderRead)
+@router.get("/get/{content_id}", response_model=ContentRead)
 def get_content(content_id: int, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user
+    content = db.query(Content).filter(Content.id == content_id).first()
+    if not content:
+        raise HTTPException(status_code=404, detail="Content not found")
+    return content
 
-@router.delete("/delete/{content_id}", response_model=UserRead)
-def delete_user(user_id: int, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user
+@router.delete("/delete/{content_id}")
+def delete_content(content_id: int, db: Session = Depends(get_db)):
+    content = db.query(Content).filter(Content.id == content_id).first()
+    if not content:
+        raise HTTPException(status_code=404, detail="Content not found")
+    db.delete(content)
+    db.commit()
+    return {"success": True, "message": "Content deleted successfully"}
 
