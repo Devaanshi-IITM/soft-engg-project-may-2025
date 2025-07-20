@@ -1,6 +1,6 @@
 from app.core.db.postgres import SessionLocal
 from app.core.db.mongo import db as mongo_db
-from app.core.db.redis import redis
+from app.core.db.redis import redis_client as redis
 
 def get_db():
     db = SessionLocal()
