@@ -2,9 +2,23 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     API_VI_STR: str = "/api/v1"
-    POSTGRES_URL: str = "postgresql://user:password@localhost/fastapi_db"
-    MONGO_URI: str = "mongodb://localhost:27017"
-    REDIS_URL: str = "redis://localhost"
+    
+    POSTGRES_USER: str = "myuser"
+    POSTGRES_PASSWORD: str = "mypassword"
+    POSTGRES_DB: str = "fastapi_db"
+    POSTGRES_HOST: str = "postgres"  # <-- service name from docker-compose
+    POSTGRES_PORT: str = "5432"
+    POSTGRES_URL: str = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+
+    # MongoDB
+    MONGO_HOST: str = "mongo"  # <-- service name
+    MONGO_PORT: int = 27017
+    MONGO_URL: str = f"mongodb://{MONGO_HOST}:{MONGO_PORT}"
+
+    # Redis
+    REDIS_HOST: str = "redis"  # <-- service name
+    REDIS_PORT: int = 6379
+    REDIS_URL: str = f"redis://{REDIS_HOST}:{REDIS_PORT}"
 
 settings = Settings()
     
