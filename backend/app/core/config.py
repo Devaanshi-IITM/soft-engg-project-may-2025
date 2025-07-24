@@ -1,7 +1,7 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    API_VI_STR: str = "/api/v1"
+    API_V1_STR: str = "/api/v1"
     
     POSTGRES_USER: str = "myuser"
     POSTGRES_PASSWORD: str = "mypassword"

@@ -1,6 +1,4 @@
-# Dockerfile
-
-FROM python:3.11-slim
+FROM python:3.9
 
 # Set working directory
 WORKDIR /app
@@ -12,6 +10,7 @@ RUN apt-get update
 COPY requirements.txt .
 
 # Install Python dependencies
+RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 # Copy app source
@@ -21,4 +20,5 @@ COPY . .
 EXPOSE 8000
 
 # Run FastAPI app with uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["fastapi", "run", "main.py", "--port", "8000"]
