@@ -7,7 +7,7 @@ db = None
 
 async def init_db():
     global client, db
-    client = AsyncIOMotorClient(settings.MONGO_URI)
+    client = AsyncIOMotorClient(settings.MONGO_URL)
     db = client["message_db"]
     db.create_collection("messages")
 
