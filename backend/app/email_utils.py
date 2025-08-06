@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-GMAIL_USER = os.getenv("GMAIL_USER")
-GMAIL_PASS = os.getenv("GMAIL_PASS")
+GMAIL_USER = os.getenv("GMAIL_USER","dummy_user@example.com")
+GMAIL_PASS = os.getenv("GMAIL_PASS","dummy_password")
 
 def send_otp_email(email, otp, user_type):
     subject = f"{user_type} Email Verification OTP"

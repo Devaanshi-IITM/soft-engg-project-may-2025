@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "fastapi_db"
     POSTGRES_HOST: str = "postgres"  # <-- service name from docker-compose
     POSTGRES_PORT: str = "5432"
-    POSTGRES_URL: str = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+    POSTGRES_URL: str = f"postgresql+psycopg2://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
     # MongoDB
     MONGO_HOST: str = "mongo"  # <-- service name

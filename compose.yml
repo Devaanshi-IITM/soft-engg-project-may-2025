@@ -1,7 +1,7 @@
 services:
 
   fastapi:
-    build: ./app
+    build: ./backend
     container_name: fastapi-app
     ports:
       - "8000:8000"

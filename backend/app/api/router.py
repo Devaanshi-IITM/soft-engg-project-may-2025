@@ -9,5 +9,5 @@ api_router.include_router(auth.router)
 api_router.include_router(reminder.router)
 api_router.include_router(message.router)
 api_router.include_router(content.router)
-api_router.include_router(ai.router)
+# api_router.include_router(ai.router)
 
