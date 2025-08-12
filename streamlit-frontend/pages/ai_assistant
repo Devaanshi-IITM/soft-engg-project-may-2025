@@ -1,3 +1,0 @@
-import streamlit as st
-st.title("AI Assistant")
-st.write("This is Ai assistant section.")
