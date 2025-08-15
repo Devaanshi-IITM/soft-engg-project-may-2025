@@ -1,0 +1,892 @@
+openapi: 3.1.0
+info:
+  title: API Documentation
+  description: Documentation for the APIs used in our application called "Saathi"
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      summary: Health Check
+      description: Checks the health of the application and model.
+      operationId: health_check_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+  /auth/register:
+    post:
+      summary: Register a new user
+      description: Register a new user(senior citizen, family/caretaker, admin and other tertiary users) with email and phone number validation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+      responses:
+        '200':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Email or phone number already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /auth/login/send_otp:
+    post:
+      summary: Send OTP for login
+      description: Send an OTP to the user's email/phone for login verification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: OTP sent successfully or failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OTPResponse'
+
+  /auth/login/verify_otp:
+    post:
+      summary: Verify OTP for login
+      description: Verify the OTP sent to user's email and return user role
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OTPVerificationRequest'
+      responses:
+        '200':
+          description: OTP verification result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginVerificationResponse'
+        '400':
+          description: OTP expired, not found, or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user/create:
+    post:
+      summary: Create a new user
+      description: Create a new user with validation for unique email and phone number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '200':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Email or phone number already registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user/get/{user_id}:
+    get:
+      summary: Get user by ID
+      description: Retrieve user information by user ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user to retrieve
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRead'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user/update:
+    put:
+      summary: Update user information
+      description: Update user information by user ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /user/delete/{user_id}:
+    delete:
+      summary: Delete user
+      description: Delete a user by user ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user to delete
+      responses:
+        '200':
+          description: User deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+                
+                
+  /transcribe-audio:
+    post:
+      summary: Transcribe Audio
+      operationId: transcribe_audio_transcribe_audio_post
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Body_transcribe_audio_transcribe_audio_post'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+/chat/:
+    post:
+      summary: Interact with the Reminder Agent
+      description: 'Sends a user query to the AI agent and receives a response.
+
+        The agent will either set a reminder or respond directly.'
+      operationId: chat_with_agent_chat__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInput'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AIResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+
+/content/create:
+  post:
+    summary: Create new content
+    description: Create a new content item with title, type, and file URL
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContentCreate'
+    responses:
+      '200':
+        description: Content created successfully
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuccessResponse'
+
+  /content/get/{content_id}:
+    get:
+      summary: Get content by ID
+      description: Retrieve content information by content ID
+      parameters:
+        - name: content_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the content to retrieve
+      responses:
+        '200':
+          description: Content found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentRead'
+        '404':
+          description: Content not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /content/delete/{content_id}:
+    delete:
+      summary: Delete content
+      description: Delete content by content ID
+      parameters:
+        - name: content_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the content to delete
+      responses:
+        '200':
+          description: Content deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: Content not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /message/create:
+    post:
+      summary: Create a new message
+      description: Create a new message between users (stored in both PostgreSQL and MongoDB)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageCreate'
+      responses:
+        '200':
+          description: Message created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+
+  /message/get/{message_id}:
+    get:
+      summary: Get message by ID
+      description: Retrieve message information by message ID
+      parameters:
+        - name: message_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the message to retrieve
+      responses:
+        '200':
+          description: Message found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageRead'
+        '404':
+          description: Message not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /message/delete/{message_id}:
+    delete:
+      summary: Delete message
+      description: Delete message by message ID (removes from both PostgreSQL and MongoDB)
+      parameters:
+        - name: message_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the message to delete
+      responses:
+        '200':
+          description: Message deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: Message not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /reminder/create:
+    post:
+      summary: Create a new reminder
+      description: Create a new reminder for a user with specified frequency and time
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReminderCreate'
+      responses:
+        '200':
+          description: Reminder created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+
+  /reminder/get/{reminder_id}:
+    get:
+      summary: Get reminder by ID
+      description: Retrieve reminder information by reminder ID
+      parameters:
+        - name: reminder_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the reminder to retrieve
+      responses:
+        '200':
+          description: Reminder found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReminderRead'
+        '404':
+          description: Reminder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /reminder/update:
+    put:
+      summary: Update reminder
+      description: Update reminder information by reminder ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReminderUpdate'
+      responses:
+        '200':
+          description: Reminder updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: Reminder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /reminder/delete/{reminder_id}:
+    delete:
+      summary: Delete reminder
+      description: Delete reminder by reminder ID
+      parameters:
+        - name: reminder_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the reminder to delete
+      responses:
+        '200':
+          description: Reminder deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '404':
+          description: Reminder not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    UserInput:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          description: User's text input for the AI agent
+          example: "Remind me to call mom tomorrow at 3 PM about her doctor's appointment."
+      example:
+        text: "Remind me to call mom tomorrow at 3 PM about her doctor's appointment."
+
+    AIResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: AI agent's response to the user
+          example: "Reminder operation successful: Reminder 'call mom about her doctor's appointment' set successfully for tomorrow and time 3 PM"
+        reminders_list:
+          type: array
+          items:
+            type: object
+          nullable: true
+          description: Optional list of reminders (currently not implemented)
+      example:
+        response: "Reminder operation successful: Reminder 'call mom about her doctor's appointment' set successfully for tomorrow and time 3 PM"
+        reminders_list: null
+
+    AddReminderInput:
+      type: object
+      required:
+        - reason
+        - date
+      properties:
+        reason:
+          type: string
+          description: The reason or description of the reminder
+          example: "Call mom about her doctor's appointment"
+        date:
+          type: string
+          description: The date for the reminder (e.g., '2023-10-27', 'tomorrow', 'next Monday')
+          example: "tomorrow"
+        time:
+          type: string
+          nullable: true
+          description: The specific time for the reminder (e.g., '10:00 AM', '15:30', 'noon'). Use 24-hour format if possible.
+          example: "3 PM"
+      example:
+        reason: "Call mom about her doctor's appointment"
+        date: "tomorrow"
+        time: "3 PM"
+
+    RegisterUser:
+      type: object
+      required:
+        - email
+        - phone_number
+      properties:
+        email:
+          type: string
+          format: email
+          description: User's email address
+        phone_number:
+          type: string
+          description: User's phone number
+      example:
+        email: "user@example.com"
+        phone_number: "+1234567890"
+
+    LoginRequest:
+      type: object
+      required:
+        - email
+      properties:
+        email:
+          type: string
+          format: email
+          description: User's email address for login
+      example:
+        email: "user@example.com"
+
+    OTPVerificationRequest:
+      type: object
+      required:
+        - email
+        - otp
+      properties:
+        email:
+          type: string
+          format: email
+          description: User's email address
+        otp:
+          type: string
+          description: 6-digit OTP code
+      example:
+        email: "user@example.com"
+        otp: "123456"
+
+    UserCreate:
+      type: object
+      required:
+        - name
+        - email
+        - phone_number
+      properties:
+        name:
+          type: string
+          description: User's full name
+        email:
+          type: string
+          format: email
+          description: User's email address
+        age:
+          type: integer
+          minimum: 0
+          description: User's age
+        gender:
+          type: string
+          description: User's gender
+        phone_number:
+          type: string
+          description: User's phone number
+        is_admin:
+          type: boolean
+          default: false
+          description: Whether user has admin privileges
+      example:
+        name: "John Doe"
+        email: "john@example.com"
+        age: 30
+        gender: "Male"
+        phone_number: "+1234567890"
+        is_admin: false
+
+    UserUpdate:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          description: User's ID
+        name:
+          type: string
+          description: User's full name
+        email:
+          type: string
+          format: email
+          description: User's email address
+        age:
+          type: integer
+          minimum: 0
+          description: User's age
+        gender:
+          type: string
+          description: User's gender
+        phone_number:
+          type: string
+          description: User's phone number
+        is_admin:
+          type: boolean
+          description: Whether user has admin privileges
+      example:
+        id: 1
+        name: "John Doe Updated"
+        email: "john.updated@example.com"
+        age: 31
+
+    UserRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: User's unique identifier
+        name:
+          type: string
+          description: User's full name
+        email:
+          type: string
+          format: email
+          description: User's email address
+        age:
+          type: integer
+          description: User's age
+        gender:
+          type: string
+          description: User's gender
+        phone_number:
+          type: string
+          description: User's phone number
+        is_admin:
+          type: boolean
+          description: Whether user has admin privileges
+      example:
+        id: 1
+        name: "John Doe"
+        email: "john@example.com"
+        age: 30
+        gender: "Male"
+        phone_number: "+1234567890"
+        is_admin: false
+
+    ContentCreate:
+      type: object
+      required:
+        - title
+        - type
+        - file_url
+      properties:
+        title:
+          type: string
+          description: Content title
+        type:
+          type: string
+          description: Content type
+        file_url:
+          type: string
+          format: uri
+          description: URL to the content file
+      example:
+        title: "Sample Video"
+        type: "video"
+        file_url: "https://example.com/video.mp4"
+
+    ContentRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Content unique identifier
+        title:
+          type: string
+          description: Content title
+        type:
+          type: string
+          description: Content type
+        file_url:
+          type: string
+          format: uri
+          description: URL to the content file
+      example:
+        id: 1
+        title: "Sample Video"
+        type: "video"
+        file_url: "https://example.com/video.mp4"
+
+    MessageCreate:
+      type: object
+      required:
+        - sender_id
+        - recipient_id
+        - content
+      properties:
+        sender_id:
+          type: integer
+          description: ID of the message sender
+        recipient_id:
+          type: integer
+          description: ID of the message recipient
+        content:
+          type: string
+          description: Message content
+      example:
+        sender_id: 1
+        recipient_id: 2
+        content: "Hello, how are you?"
+
+    MessageRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Message unique identifier
+        sender_id:
+          type: integer
+          description: ID of the message sender
+        recipient_id:
+          type: integer
+          description: ID of the message recipient
+        timestamp:
+          type: string
+          format: date-time
+          description: Message timestamp
+      example:
+        id: 1
+        sender_id: 1
+        recipient_id: 2
+        timestamp: "2025-07-20T10:00:00Z"
+
+    ReminderCreate:
+      type: object
+      required:
+        - title
+        - user_id
+        - frequency
+        - time_of_day
+      properties:
+        title:
+          type: string
+          description: Reminder title
+        user_id:
+          type: integer
+          description: ID of the user the reminder belongs to
+        frequency:
+          type: string
+          description: Reminder frequency (e.g., daily, weekly, monthly)
+        time_of_day:
+          type: string
+          format: time
+          description: Time of day for the reminder
+        is_active:
+          type: boolean
+          default: true
+          description: Whether the reminder is active
+      example:
+        title: "Take medication"
+        user_id: 1
+        frequency: "daily"
+        time_of_day: "08:00"
+        is_active: true
+
+    ReminderUpdate:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: integer
+          description: Reminder ID
+        title:
+          type: string
+          description: Reminder title
+        user_id:
+          type: integer
+          description: ID of the user the reminder belongs to
+        frequency:
+          type: string
+          description: Reminder frequency
+        time_of_day:
+          type: string
+          format: time
+          description: Time of day for the reminder
+        is_active:
+          type: boolean
+          description: Whether the reminder is active
+      example:
+        id: 1
+        title: "Take medication updated"
+        frequency: "twice daily"
+        is_active: false
+
+    ReminderRead:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Reminder unique identifier
+        title:
+          type: string
+          description: Reminder title
+        user_id:
+          type: integer
+          description: ID of the user the reminder belongs to
+        frequency:
+          type: string
+          description: Reminder frequency
+        time_of_day:
+          type: string
+          format: time
+          description: Time of day for the reminder
+        is_active:
+          type: boolean
+          description: Whether the reminder is active
+      example:
+        id: 1
+        title: "Take medication"
+        user_id: 1
+        frequency: "daily"
+        time_of_day: "08:00"
+        is_active: true
+
+    SuccessResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: "Operation completed successfully"
+
+    ErrorResponse:
+      type: object
+      properties:
+        detail:
+          type: string
+          description: Error message
+          example: "Resource not found"
+
+    OTPResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether OTP sending was successful
+        message:
+          type: string
+          description: Response message
+      example:
+        success: true
+        message: "OTP sent successfully to email."
+
+    LoginVerificationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether login was successful
+        role:
+          type: string
+          enum: [admin, user]
+          description: User role
+        message:
+          type: string
+          description: Response message (when success is false)
+      example:
+        success: true
+        role: "user"
+        
+  
