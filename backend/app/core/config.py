@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
 
-    SQLITE_URL: str = "sqlite:///../saathi_app.db"
+    SQLITE_URL: str = "sqlite:///../db/saathi_app.db"
     
     POSTGRES_USER: str = "myuser"
     POSTGRES_PASSWORD: str = "mypassword"

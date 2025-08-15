@@ -17,16 +17,16 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup():
-    # sqlite.init_db()
-    postgres.init_db()
-    await mongo.init_db()
-    await redis.init_redis()
+    sqlite.init_db()
+    # postgres.init_db()
+    # await mongo.init_db()
+    # await redis.init_redis()
 
 @app.on_event("shutdown")
 async def shutdown():
-    # pass
-    await mongo.close_db()
-    await redis.close_redis()
+    pass
+    # await mongo.close_db()
+    # await redis.close_redis()
 
 app.include_router(
     api_router,  # Import the API router
