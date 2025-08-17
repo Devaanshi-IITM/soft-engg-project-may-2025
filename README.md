@@ -50,12 +50,7 @@ git clone https://github.com/your-username/saathi-app.git
 cd saathi-app
 ```
 ## Agent Flow
-flowchart TD
-    A[Start] --> B[LLM]
-    B --> C{Intend to set reminder?}
-    C -->|Yes| D[Tool]
-    D --> E[End]
-    C -->|No| E[End]
+[![](https://mermaid.ink/img/pako:eNqdkUFvgjAYhv8K-bxsCZJSi0iXLFHwsPtOE0OYfAhZoaSUTEf47yuo225L7Knv8_V5e_h6OMgMgcNRpU1hvUZxbZmzftglSatTpZNk_2jN58_WpheiGp4u841B1kutsc4SLZMWdaKwKusM1fQ47LWU4vY6nFg0do6CafytccxkuzN4f2XbC4tMvIBWnwVaaysvheAzXCLJV3arlfxAPguYH2TuNc4_y0wXnDanv-bmbjO824yu5oG-05z8b44u2GYJZQZcqw5tqFBV6RihH6cx6AIrjIGba4Z52gkdQ1wPRmvS-k3K6mYq2R0L4HkqWpO6Jks1RmVqNlz9UIXjrkLZ1Ro4ZWQqAd7DCbgbrJwFCzzfXzFGXMKYDWfgnucw6hPPd4kfEI-wwYav6VvXIUGw9KnneQFdsCUdvgEy9bdS?type=png)](https://mermaid.live/edit#pako:eNqdkUFvgjAYhv8K-bxsCZJSi0iXLFHwsPtOE0OYfAhZoaSUTEf47yuo225L7Knv8_V5e_h6OMgMgcNRpU1hvUZxbZmzftglSatTpZNk_2jN58_WpheiGp4u841B1kutsc4SLZMWdaKwKusM1fQ47LWU4vY6nFg0do6CafytccxkuzN4f2XbC4tMvIBWnwVaaysvheAzXCLJV3arlfxAPguYH2TuNc4_y0wXnDanv-bmbjO824yu5oG-05z8b44u2GYJZQZcqw5tqFBV6RihH6cx6AIrjIGba4Z52gkdQ1wPRmvS-k3K6mYq2R0L4HkqWpO6Jks1RmVqNlz9UIXjrkLZ1Ro4ZWQqAd7DCbgbrJwFCzzfXzFGXMKYDWfgnucw6hPPd4kfEI-wwYav6VvXIUGw9KnneQFdsCUdvgEy9bdS)
 
 ## Presentation
 
