@@ -90,7 +90,7 @@ saathi-digital-companion
 ├─── requirement.txt
 │
 ├─── api
-│   ├─── admin_api.py
+│   ├─── ai.py
 │   ├─── appointment_api.py
 │   ├─── audio_api.py
 │   ├─── guardian_api.py
