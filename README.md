@@ -30,7 +30,7 @@ Here are the key libraries and frameworks used in the project:
 ### GenAI Integration
 - **Langchain** ![Langchain](https://img.shields.io/badge/Langchain-FF9900?style=flat-square&logo=python&logoColor=white)  
 
-- **Qroq** ![Qrok](https://img.shields.io/badge/Qroq-0078D4?style=flat-square&logo=microsoft&logoColor=white)
+- **Groq** ![Groq](https://img.shields.io/badge/Groq-0078D4?style=flat-square&logo=microsoft&logoColor=white)
  
 - **Whisper** ![Whisper](https://img.shields.io/badge/Whisper-4F8C99?style=flat-square&logo=python&logoColor=white)
 
