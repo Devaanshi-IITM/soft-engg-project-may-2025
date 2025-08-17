@@ -30,7 +30,7 @@ Here are the key libraries and frameworks used in the project:
 ### GenAI Integration
 - **Langchain** ![Langchain](https://img.shields.io/badge/Langchain-FF9900?style=flat-square&logo=python&logoColor=white)  
 
-- **Qroq** ![Qrok](https://img.shields.io/badge/Qrok-0078D4?style=flat-square&logo=microsoft&logoColor=white)
+- **Qroq** ![Qrok](https://img.shields.io/badge/Qroq-0078D4?style=flat-square&logo=microsoft&logoColor=white)
  
 - **Whisper** ![Whisper](https://img.shields.io/badge/Whisper-4F8C99?style=flat-square&logo=python&logoColor=white)
 
@@ -73,12 +73,12 @@ python app.py
 ```
 Should be available at `http://127.0.0.1:5000/#/`
 
-## Agent Flow
+## Agent Flow (GenAI)
 [![](https://mermaid.ink/img/pako:eNqdkUFvgjAYhv8K-bxsCZJSi0iXLFHwsPtOE0OYfAhZoaSUTEf47yuo225L7Knv8_V5e_h6OMgMgcNRpU1hvUZxbZmzftglSatTpZNk_2jN58_WpheiGp4u841B1kutsc4SLZMWdaKwKusM1fQ47LWU4vY6nFg0do6CafytccxkuzN4f2XbC4tMvIBWnwVaaysvheAzXCLJV3arlfxAPguYH2TuNc4_y0wXnDanv-bmbjO824yu5oG-05z8b44u2GYJZQZcqw5tqFBV6RihH6cx6AIrjIGba4Z52gkdQ1wPRmvS-k3K6mYq2R0L4HkqWpO6Jks1RmVqNlz9UIXjrkLZ1Ro4ZWQqAd7DCbgbrJwFCzzfXzFGXMKYDWfgnucw6hPPd4kfEI-wwYav6VvXIUGw9KnneQFdsCUdvgEy9bdS?type=png)](https://mermaid.live/edit#pako:eNqdkUFvgjAYhv8K-bxsCZJSi0iXLFHwsPtOE0OYfAhZoaSUTEf47yuo225L7Knv8_V5e_h6OMgMgcNRpU1hvUZxbZmzftglSatTpZNk_2jN58_WpheiGp4u841B1kutsc4SLZMWdaKwKusM1fQ47LWU4vY6nFg0do6CafytccxkuzN4f2XbC4tMvIBWnwVaaysvheAzXCLJV3arlfxAPguYH2TuNc4_y0wXnDanv-bmbjO824yu5oG-05z8b44u2GYJZQZcqw5tqFBV6RihH6cx6AIrjIGba4Z52gkdQ1wPRmvS-k3K6mYq2R0L4HkqWpO6Jks1RmVqNlz9UIXjrkLZ1Ro4ZWQqAd7DCbgbrJwFCzzfXzFGXMKYDWfgnucw6hPPd4kfEI-wwYav6VvXIUGw9KnneQFdsCUdvgEy9bdS)
 
 ## Presentation
 
-The link to the `video` can be found at []()
+The link to the video can be found at []()
 
 ---
 
