@@ -30,7 +30,7 @@ Here are the key libraries and frameworks used in the project:
 ### GenAI Integration
 - **Langchain** ![Langchain](https://img.shields.io/badge/Langchain-FF9900?style=flat-square&logo=python&logoColor=white)  
 
-- **Qrok** ![Qrok](https://img.shields.io/badge/Qrok-0078D4?style=flat-square&logo=microsoft&logoColor=white)
+- **Qroq** ![Qrok](https://img.shields.io/badge/Qrok-0078D4?style=flat-square&logo=microsoft&logoColor=white)
  
 - **Whisper** ![Whisper](https://img.shields.io/badge/Whisper-4F8C99?style=flat-square&logo=python&logoColor=white)
 
@@ -49,6 +49,13 @@ To run the app locally, the following libs should've been installed:
 git clone https://github.com/your-username/saathi-app.git
 cd saathi-app
 ```
+## Agent Flow
+flowchart TD
+    A[Start] --> B[LLM]
+    B --> C{Intend to set reminder?}
+    C -->|Yes| D[Tool]
+    D --> E[End]
+    C -->|No| E[End]
 
 ## Presentation
 
