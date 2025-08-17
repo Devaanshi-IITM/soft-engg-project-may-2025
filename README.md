@@ -20,9 +20,7 @@ Here are the key libraries and frameworks used in the project:
 ### Frontend
 - **Vue.js** ![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white)
 
-### Backend
-- **FastAPI** ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)  
-  
+### Backend  
 - **Flask** ![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)  
 
 - **SQLite** ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)  
