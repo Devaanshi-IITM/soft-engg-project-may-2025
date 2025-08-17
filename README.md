@@ -83,7 +83,7 @@ The link to the video can be found at []()
 ---
 
 ## Directory Structure
-
+```
 saathi-digital-companion
 │   app.py
 │   database.db
@@ -121,3 +121,4 @@ saathi-digital-companion
         SeniorLogin.js
         SeniorProfileView.js
         SeniorRegister.js
+```
