@@ -85,40 +85,40 @@ The link to the video can be found at []()
 ## Directory Structure
 ```
 saathi-digital-companion
-│   app.py
-│   database.db
-│   models.py
-│   README.md
-│   requirement.txt
+├─── app.py
+├─── database.db
+├─── models.py
+├─── README.md
+├─── requirement.txt
 │
-├───api
-│   admin_api.py
-│   appointment_api.py
-│   audio_api.py
-│   guardian_api.py
-│   message_api.py
-│   reminder_api.py
-│   senior_api.py
-│   __init__.py
+├─── api
+│   ├─── admin_api.py
+│   ├─── appointment_api.py
+│   ├─── audio_api.py
+│   ├─── guardian_api.py
+│   ├─── message_api.py
+│   ├─── reminder_api.py
+│   ├─── senior_api.py
+│   └─── __init__.py
 │
-├───static
-│   index.html
+├─── static
+│   └─── index.html
 │
-├───audio
+├─── audio
 │
-├───css
-│   style.css
+├─── css
+│   └─── style.css
 │
-└───js
-    app.js
-    router.js
-    └───pages
-        app.js
-        GuardianAuth.js
-        GuardianDashboard.js
-        ManageReminders.js
-        SeniorDashboard.js
-        SeniorLogin.js
-        SeniorProfileView.js
-        SeniorRegister.js
+└─── js
+    ├─── app.js
+    ├─── router.js
+    └─── pages
+        ├─── app.js
+        ├─── GuardianAuth.js
+        ├─── GuardianDashboard.js
+        ├─── ManageReminders.js
+        ├─── SeniorDashboard.js
+        ├─── SeniorLogin.js
+        ├─── SeniorProfileView.js
+        └─── SeniorRegister.js
 ```
